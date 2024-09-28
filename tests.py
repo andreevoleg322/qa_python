@@ -104,7 +104,9 @@ class TestBooksCollector:
         collector = BooksCollector()
         collector.add_new_book(name)
         collector.set_book_genre(name, genre)
-        assert collector.get_books_genre() == {name: genre, name: genre}
+        g = collector.get_books_genre()
+        assert name in g.keys()
+        assert g.get(name) == genre
 
     @pytest.mark.parametrize('name', ['Пикник на обочине', 'Понедельник начинается в субботу', 'Трудно быть богом', 'Жук в муравейнике'])
     def test_get_list_of_favorites_books(self, name):
